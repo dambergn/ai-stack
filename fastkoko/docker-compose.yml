@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  kokoro:
+    image: ghcr.io/remsky/kokoro-fastapi-gpu:v0.2.1
+    networks:
+      - dockernet
+    ports:
+      - '8880:8880'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+networks:
+  dockernet:
+    external: true

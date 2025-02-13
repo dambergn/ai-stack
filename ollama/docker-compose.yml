@@ -1,0 +1,30 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - OLLAMA_KEEP_ALIVE=1h
+      - ENABLE_IMAGE_GENERATION=True
+      - COMFYUI_BASE_URL=http://stable-diffusion-webui:7860
+    networks:
+      - dockernet
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /mnt/models/ollama:/root/.ollama
+    ports:
+      - "11434:11434" # Add this line to expose the port
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+networks:
+  dockernet:
+    external: true

@@ -1,0 +1,28 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:v0.5.10
+    container_name: open-webui-production
+    restart: unless-stopped
+    networks:
+      - dockernet
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - 'OLLAMA_BASE_URL=http://ollama:11434'
+      - ENABLE_RAG_WEB_SEARCH=True
+      - RAG_WEB_SEARCH_ENGINE=searxng
+      - RAG_WEB_SEARCH_RESULT_COUNT=3
+      - RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10
+      - SEARXNG_QUERY_URL=https://search.mhzsys.net/search?q=<query>
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /mnt/models/open-webui-70b:/app/backend/data
+    ports:
+      - "8080:8080" # Add this line to expose the port
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+networks:
+  dockernet:
+    external: true

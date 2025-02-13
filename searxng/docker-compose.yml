@@ -1,0 +1,19 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    networks:
+      - dockernet
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /mnt/models/searxng:/etc/searxng
+    restart: unless-stopped
+    ports:
+      - "8081:8080" # Add this line to expose the port
+networks:
+  dockernet:
+    external: true
