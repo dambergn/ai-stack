@@ -9,8 +9,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /mnt/models/whisper_v2/db_data:/data/db
-      - /mnt/models/whisper_v2/db_data/logs/:/var/log/mongodb/
+      - /mnt/models/whisper/db_data:/data/db
+      - /mnt/models/whisper/db_data/logs/:/var/log/mongodb/
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}

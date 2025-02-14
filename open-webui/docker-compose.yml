@@ -13,11 +13,11 @@ services:
       - RAG_WEB_SEARCH_ENGINE=searxng
       - RAG_WEB_SEARCH_RESULT_COUNT=3
       - RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10
-      - SEARXNG_QUERY_URL=https://search.mhzsys.net/search?q=<query>
+      - SEARXNG_QUERY_URL=https://localhost:8081/search?q=<query>
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /mnt/models/open-webui-70b:/app/backend/data
+      - /mnt/models/open-webui:/app/backend/data
     ports:
       - "8080:8080" # Add this line to expose the port
     extra_hosts:

@@ -42,7 +42,7 @@ NOTE: make sure you have created the dockernet network first before you start ru
 cd ~/ai-stack/ollama
 docker compose up
 # Common ollama commands
-docker exec ollama version                 # shows which version is istalled.
+docker exec ollama --version               # shows which version is istalled.
 docker exec ollama pull <model>            # For downloading a model without starting it.
 docker exec ollama run <model>             # Run a model, will download if not already on system.
 docker exec ollama run <model> --verbose   #  Will run model and give analytics at the end of request.
