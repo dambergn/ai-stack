@@ -5,7 +5,7 @@ After running setup.sh you can CD into each folder component and run docker comp
 This is based of Techno Tim but I have made significant changes to his implimentation.  https://www.youtube.com/watch?v=yoze1IxdBdM&t=3301s  
 
 ## Prerequisits
-You will want to install your Nvidia drivers first you will want to reboot after installation.
+You will want to install your Nvidia drivers, the system will reboot itself after the driver installation.
 ```bash
 ./install_nvidia_drivers.sh
 ```
