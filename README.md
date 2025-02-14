@@ -70,6 +70,7 @@ URL: http://localhost:8081
 cd ~/ai-stack/whishper
 docker compose up
 ```
+URL: http://localhost:8100
 
 ## FastKoko - Text to Speech
 - https://github.com/remsky/Kokoro-FastAPI/blob/master/README.md
@@ -77,6 +78,7 @@ docker compose up
 cd ~/ai-stack/fastkoko
 docker compose up
 ```
+URL: http://localhost:8880/web/
 
 ## ComfyUI - Image generation
 - https://github.com/comfyanonymous/ComfyUI
@@ -88,3 +90,4 @@ nano stable-diffusion-webui-docker/services/comfy/Dockerfile
 #  git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && \
 docker compose up
 ```
+URL: http://localhost:7860
