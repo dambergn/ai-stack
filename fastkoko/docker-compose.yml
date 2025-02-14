@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   kokoro:
-    image: ghcr.io/remsky/kokoro-fastapi-gpu:v0.2.1
+    image: ghcr.io/remsky/kokoro-fastapi-gpu:v0.2.2
     networks:
       - dockernet
     ports:

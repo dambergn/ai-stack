@@ -16,12 +16,12 @@ Then install the docker and nvida toolkit.  NOTE: you will have to log out and b
 
 ## Docker Commands
 ```bash
-docker ps
-docker images
+docker ps                        # Displays running containers
+docker images                    # Displays images on the system
 ## Docker compose commands
-docker compose up
-docker compose down
-docker compose up -d <-- no console output.
+docker compose up                # Builds the docker environment in the compose file
+docker compose down              # Shuts down and removes containers
+docker compose up -d             # Builds and runs docker envronment with no console output.
 ## Create dockernet network
 docker network create dockernet  # You will want to create this network before starting components.
 ```
@@ -55,6 +55,7 @@ cd ~/ai-stack/open-webui
 docker compose up
 ```
 URL: http://localhost:3000
+Note: for Mic to work the web UI must be accessed via localhost or over https with SSL. --> https://github.com/open-webui/open-webui/discussions/3012  
 
 ## SearXNG - For RAG web searches
 - https://github.com/searxng/searxng
@@ -79,6 +80,8 @@ cd ~/ai-stack/fastkoko
 docker compose up
 ```
 URL: http://localhost:8880/web/
+### Adding kokoro to open-webui
+- https://docs.openwebui.com/tutorials/text-to-speech/Kokoro-FastAPI-integration
 
 ## ComfyUI - Image generation
 - https://github.com/comfyanonymous/ComfyUI
