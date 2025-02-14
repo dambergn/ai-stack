@@ -42,11 +42,12 @@ NOTE: make sure you have created the dockernet network first before you start ru
 cd ~/ai-stack/ollama
 docker compose up
 # Common ollama commands
-ollama version                 # shows which version is istalled.
-ollama pull <model>            # For downloading a model without starting it.
-ollama run <model>             # Run a model, will download if not already on system.
-ollama run <model> --verbose   #  Will run model and give analytics at the end of request.
-ollama ps                      # Shows running LLM's
+docker exec ollama version                 # shows which version is istalled.
+docker exec ollama pull <model>            # For downloading a model without starting it.
+docker exec ollama run <model>             # Run a model, will download if not already on system.
+docker exec ollama run <model> --verbose   #  Will run model and give analytics at the end of request.
+docker exec ollama ps                      # Shows running LLM's
+docker exec ollama list                    # Shows installed models.
 ```
 
 ## Open WebUI - Web UI chat interface
@@ -68,8 +69,21 @@ URL: http://localhost:8081
 
 ## Whishper - Speech to Text
 - https://github.com/pluja/whishper
+Note: Before running docker compose, inside the whispher folder create a .env file with the provided variables.  They do not need to be populated but the compose file does need the file to be there.
+
 ```bash
 cd ~/ai-stack/whishper
+nano .env
+
+DB_USER=
+DB_PASS=
+WHISHPER_HOST=https://whisper.local.example.com
+WHISPER_MODELS=tiny,small
+PUID=
+PGID=
+
+# Ctrl x y
+
 docker compose up
 ```
 URL: http://localhost:8100
