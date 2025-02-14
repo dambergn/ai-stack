@@ -37,6 +37,7 @@ It will ask you to create a uername and password on firtst launch.
 
 ## Ollama - LLM backend engine
 - https://ollama.com/  
+NOTE: make sure you have created the dockernet network first before you start running docker comose, this only needs to be done once.  docker network create dockernet
 ```bash
 cd ~/ai-stack/ollama
 docker compose up
