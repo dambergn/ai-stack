@@ -55,7 +55,7 @@ ollama ps                      # Shows running LLM's
 cd ~/ai-stack/open-webui
 docker compose up
 ```
-URL: http://localhost:3000
+URL: http://localhost:8080
 Note: for Mic to work the web UI must be accessed via localhost or over https with SSL. --> https://github.com/open-webui/open-webui/discussions/3012  
 
 ## SearXNG - For RAG web searches
