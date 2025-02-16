@@ -10,6 +10,7 @@ You will want to install your Nvidia drivers, the system will reboot itself afte
 ./install_nvidia_drivers.sh
 ```
 Then install the docker and nvida toolkit.  NOTE: you will have to log out and back in for your user to be able to run docker commands without using sudo.
+
 ```bash
 ./install_docker.sh
 ```
@@ -32,7 +33,7 @@ docker network create dockernet  # You will want to create this network before s
 ```bash
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.21.5
 ```
-URL: https://localhost:9440
+URL: https://localhost:9443
 It will ask you to create a uername and password on firtst launch.  
 
 ## Ollama - LLM backend engine
