@@ -6,7 +6,7 @@ function check_nvidia_driver_version {
     # Check if nvidia-smi is available
     if ! command -v nvidia-smi &> /dev/null; then
         echo "NVIDIA drivers are not installed."
-        echo "Note: installing the drivers will reboot the system automatically. /n Run this script again after system reboot to continue."
+        echo "Note: installing the drivers will reboot the system automatically. \n Run this script again after system reboot to continue."
         read -p $'\nWould you like to install them now? (yes/no): ' confirm
         if [[ ! "$confirm" =~ ^[yY][eE][sS]$ ]]; then
             echo "Installation aborted."
