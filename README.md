@@ -4,6 +4,16 @@ New version of my AI stack separating out each component instead of having them 
 After running setup.sh you can CD into each folder component and run docker compose up -d, or run start.sh to run them all.  
 This is based of Techno Tim but I have made significant changes to his implimentation.  https://www.youtube.com/watch?v=yoze1IxdBdM&t=3301s  
 
+
+## Easy Install method
+Ensure nvidia drivers are installed and working.
+Run
+```bash
+./setup.sh
+```
+Seclect the options you want to install.
+
+
 ## Prerequisits
 You will want to install your Nvidia drivers, the system will reboot itself after the driver installation.
 ```bash
@@ -110,3 +120,16 @@ nano stable-diffusion-webui-docker/services/comfy/Dockerfile
 docker compose up
 ```
 URL: http://localhost:7860
+
+## Logo
+```
+
+           _                               _ 
+ _ __ ___ | |__  _______ _   _ ___    __ _(_)
+| '_ ` _ \| '_ \|_  / __| | | / __|  / _` | |
+| | | | | | | | |/ /\__ \ |_| \__ \ | (_| | |
+|_| |_| |_|_| |_/___|___/\__, |___/  \__,_|_|
+                         |___/               
+
+
+```

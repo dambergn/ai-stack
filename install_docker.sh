@@ -11,6 +11,9 @@ sudo apt install docker-ce
 sudo systemctl status docker
 sudo usermod -aG docker $USER
 
+# Create dockernet network
+sudo docker network create dockernet 
+
 
 # Install nvidia docker toolkit
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
