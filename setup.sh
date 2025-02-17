@@ -280,3 +280,9 @@ for i in "${!software_list[@]}"; do
 done
 
 echo -e "\nInstallation complete!"
+echo "Portainer: https://localhost:9443"
+echo "OpenWebUI: http://localhost:8080"
+echo "SearXNG: http://localhost:8081"
+echo "Whispher: http://localhost:8100"
+echo "kokoro: http://localhost:8880/web"
+echo "ComfyUI: http://localhost:7860"
