@@ -115,21 +115,21 @@ install_ollama() {
     echo "Installing Ollama..."
     # Add your specific install commands here
     cd ~/ai-stack/ollama
-    sudo docker compose up
+    sudo docker compose up -d
 }
 
 install_open-webui() {
     echo "Installing Open WebUI..."
     # Add your specific install commands here
     cd ~/ai-stack/open-webui
-    sudo docker compose up
+    sudo docker compose up -d
 }
 
 install_searxng() {
     echo "Installing SearXNG..."
     # Add your specific install commands here
     cd ~/ai-stack/searxng
-    sudo docker compose up
+    sudo docker compose up -d
 }
 
 install_whispher() {
@@ -144,14 +144,14 @@ install_whispher() {
     PUID=
     PGID=" > .env
 
-    sudo docker compose up
+    sudo docker compose up -d
 }
 
 install_kokoro() {
     echo "Installing Kokoro..."
     # Add your specific install commands here
     cd ~/ai-stack/fastkoko
-    sudo docker compose up
+    sudo docker compose up -d
 }
 
 install_comfyui() {
@@ -160,7 +160,7 @@ install_comfyui() {
     cd ~/ai-stack/comfyui
     ./pull-repo.sh
     sed -i 's/git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && \/# git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && \/' stable-diffusion-webui-docker/services/comfy/Dockerfile
-    sudo docker compose up
+    sudo docker compose up -d
 }
 
 # Define software list and their install commands
