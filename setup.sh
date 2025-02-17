@@ -16,7 +16,7 @@ function check_nvidia_driver_version {
         # Install Nvidia Driver
         sudo apt update
         sudo apt install -y ubuntu-drivers-common
-        sudo apt install nvidia-driver-550
+        sudo apt install -y nvidia-driver-550
         sudo reboot
     fi
 
@@ -39,46 +39,76 @@ function check_nvidia_driver_version {
         return 1
     fi
 }
-check_nvidia_driver_version "550.12"
+check_nvidia_driver_version "550.120"
 sleep 2
 
 function check_docker_version {
     # Check if Docker is installed
     if ! command -v docker &> /dev/null; then
         echo "Docker is not installed."
+        # Install docker & docker compose
+        sudo apt update
+        sudo apt install apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo apt-key fingerprint 0EBFCD88
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        sudo apt update
+        sudo apt install docker-ce
+        sudo systemctl status docker
+        sudo usermod -aG docker $USER
+
+        # Create dockernet network
+        sudo docker network create dockernet 
+
+
+        # Install nvidia docker toolkit
+        curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+        && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+        sudo apt-get update
+        sudo apt-get install -y nvidia-container-toolkit
+        sudo nvidia-ctk runtime configure --runtime=docker
+        sudo systemctl restart docker
+        sudo docker run --rm --runtime=nvidia --gpus all ubuntu nvidia-smi
+
+        echo "log out and back in to use docker without sudo"
+
         return 1
     fi
 
-    # Attempt to retrieve Docker version
-    if ! (docker --version > /dev/null); then
-        echo "Failed to retrieve Docker version. Docker may not be running."
-        return 1
-    fi
+    # # Attempt to retrieve Docker version
+    # if ! (docker --version > /dev/null); then
+    #     echo "Failed to retrieve Docker version. Docker may not be running."
+    #     return 1
+    # fi
 
-    current_version=$(docker --version | awk '{print $3}')
+    # current_version=$(docker --version | awk '{print $3}')
 
-    # Validate that a version was retrieved successfully
-    if [[ -z "${current_version}" ]]; then
-        echo "Failed to retrieve Docker version."
-        return 1
-    fi
+    # # Validate that a version was retrieved successfully
+    # if [[ -z "${current_version}" ]]; then
+    #     echo "Failed to retrieve Docker version."
+    #     return 1
+    # fi
 
-    if [[ $# -eq 0 ]]; then
-        # No target version specified; only check installation and running state
-        echo "Docker is installed with version: ${current_version}"
-        return 0
-    else
-        # Compare current version with the provided target version
-        target_version=$1
-        if [[ "${current_version}" == "${target_version}" ]]; then
-            echo "Docker version ${current_version} is installed."
-            return 0
-        else
-            echo "Docker version mismatch. Current: ${current_version}, Target: ${target_version}"
-            return 1
-        fi
-    fi
+    # if [[ $# -eq 0 ]]; then
+    #     # No target version specified; only check installation and running state
+    #     echo "Docker is installed with version: ${current_version}"
+    #     return 0
+    # else
+    #     # Compare current version with the provided target version
+    #     target_version=$1
+    #     if [[ "${current_version}" == "${target_version}" ]]; then
+    #         echo "Docker version ${current_version} is installed."
+    #         return 0
+    #     else
+    #         echo "Docker version mismatch. Current: ${current_version}, Target: ${target_version}"
+    #         return 1
+    #     fi
+    # fi
 }
+check_docker_version
 
 
 # Install functions
