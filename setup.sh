@@ -109,33 +109,34 @@ function check_docker_version {
 }
 check_docker_version
 
+CURRENT_DIR="${pwd}"
 
 # Install functions
 install_ollama() {
     echo "Installing Ollama..."
     # Add your specific install commands here
-    cd ~/ai-stack/ollama
+    cd "${CURRENT_DIR}/ollama"
     sudo docker compose up -d
 }
 
 install_open-webui() {
     echo "Installing Open WebUI..."
     # Add your specific install commands here
-    cd ~/ai-stack/open-webui
+    cd "${CURRENT_DIR}/open-webui"
     sudo docker compose up -d
 }
 
 install_searxng() {
     echo "Installing SearXNG..."
     # Add your specific install commands here
-    cd ~/ai-stack/searxng
+    cd "${CURRENT_DIR}/searxng"
     sudo docker compose up -d
 }
 
 install_whispher() {
     echo "Installing Whispher..."
     # Add your specific install commands here
-    cd ~/ai-stack/whishper
+    cd "${CURRENT_DIR}/whishper"
 
     echo "DB_USER=
     DB_PASS=
@@ -150,14 +151,14 @@ install_whispher() {
 install_kokoro() {
     echo "Installing Kokoro..."
     # Add your specific install commands here
-    cd ~/ai-stack/fastkoko
+    cd "${CURRENT_DIR}/fastkoko"
     sudo docker compose up -d
 }
 
 install_comfyui() {
     echo "Installing ComfyUI..."
     # Add your specific install commands here
-    cd ~/ai-stack/comfyui
+    cd "${CURRENT_DIR}/comfyui"
     ./pull-repo.sh
     sed -i "s|git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|# git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|g" stable-diffusion-webui-docker/services/comfy/Dockerfile
     sudo docker compose up -d
