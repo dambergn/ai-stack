@@ -159,19 +159,19 @@ install_comfyui() {
     # Add your specific install commands here
     cd ~/ai-stack/comfyui
     ./pull-repo.sh
-    sed -i 's/git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && \/# git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && \/' stable-diffusion-webui-docker/services/comfy/Dockerfile
+    sed -i "s|git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|# git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|g" stable-diffusion-webui-docker/services/comfy/Dockerfile
     sudo docker compose up -d
 }
 
 # Define software list and their install commands
 software_list=(
-    "Portainer"
-    "Ollama"
-    "Open webUI"
-    "SearXNG"
-    "Whispher - Note: not working"
-    "kokoro"
-    "ComfyUI"
+    "Portainer - Optional: Docker WebUI"
+    "Ollama - Required: LLM backend manager"
+    "Open webUI - Front end chat interface"
+    "SearXNG - Open Source Chat"
+    "Whispher - Speech-to-Text"
+    "kokoro - Text-to-Speech"
+    "ComfyUI - Image Generation"
 )
 install_commands=(
     "sudo docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.21.5"
@@ -192,7 +192,8 @@ while true; do
     clear
     
     echo "Software Installer"
-    echo "           _                               _ 
+    echo "           
+    _                               _ 
     _ __ ___ | |__  _______ _   _ ___    __ _(_)
     | '_ \` _ \\| '_ \|_  / __| | | / __|  / _\` | |
     | | | | | | | | |/ /\__ \ |_| \__ \ | (_| | |
@@ -278,6 +279,7 @@ for i in "${!software_list[@]}"; do
         fi
     fi
 done
+sudo docker restart portainer
 
 echo -e "\nInstallation complete!"
 echo "Portainer: https://localhost:9443"
