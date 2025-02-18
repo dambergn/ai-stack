@@ -109,7 +109,7 @@ function check_docker_version {
 }
 check_docker_version
 
-CURRENT_DIR="${pwd}"
+CURRENT_DIR=$(pwd)
 
 # Install functions
 install_ollama() {
@@ -138,7 +138,7 @@ install_whispher() {
     # Add your specific install commands here
     cd "${CURRENT_DIR}/whishper"
 
-    echo "DB_USER=
+    sudo echo "DB_USER=
     DB_PASS=
     WHISHPER_HOST=https://whisper.local.example.com
     WHISPER_MODELS=tiny,small
