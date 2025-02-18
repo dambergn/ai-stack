@@ -21,4 +21,4 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 
     echo "Done!"
 else
-    echo "Aborting.
+    echo "Aborting."
