@@ -6,14 +6,14 @@ read -r response
 
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo "Stopping all running containers..."
-    docker stop $(docker ps -q)
+    sudo docker stop $(sudo docker ps -q)
     
     echo "Removing all stopped containers..."
-    docker rm -f $$(docker ps -a -q)
+    sudo docker rm -f $(sudo docker ps -a -q)
     
     # Prune unused images (removes dangling and unused images)
     echo "Pruning unused Docker images..."
-    docker image prune -a
+    sudo docker image prune -a
 
     # Optional: Remove ALL images (commented out as it's more drastic)
     # echo "Removing all Docker images..."
