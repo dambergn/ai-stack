@@ -122,7 +122,8 @@ install_kokoro() {
     echo "Installing Kokoro..."
     # Add your specific install commands here
     cd "${CURRENT_DIR}/fastkoko"
-    sudo docker compose up -d
+    sudo docker compose down
+    sudo docker compose up --build -d
 }
 
 install_comfyui() {
