@@ -230,7 +230,7 @@ for i in "${!software_list[@]}"; do
 done
 
 read -p $'\nAre you sure you want to install these packages? (yes/no): ' confirm
-if [[ ! "$confirm" =~ ^[yY][eE][sS]$ ]]; then
+if [[ ! "$confirm" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo "Installation aborted."
     exit 1
 fi
