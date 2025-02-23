@@ -1,6 +1,6 @@
 services:
   open-webui:
-    image: ghcr.io/open-webui/open-webui:v0.5.10
+    image: ghcr.io/open-webui/open-webui:v0.5.12
     container_name: open-webui-production
     restart: unless-stopped
     networks:
@@ -17,7 +17,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /mnt/models/open-webui:/app/backend/data
+      - ${DATA:-/mnt/models/fastkoko}:/app/backend/data
     ports:
       - "8080:8080" # Add this line to expose the port
     extra_hosts:

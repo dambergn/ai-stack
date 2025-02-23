@@ -9,7 +9,7 @@ function check_nvidia_driver_version {
         echo "Note: installing the drivers will reboot the system automatically."
         echo "Run this script again after system reboot to continue."
         read -p $'\nWould you like to install them now? (yes/no): ' confirm
-        if [[ ! "$confirm" =~ ^[yY][eE][sS]$ ]]; then
+        if [[ ! "$confirm" =~ ^([yY][eE][sS]|[yY])$ ]]; then
             echo "Installation aborted."
         exit 1
         fi
@@ -76,36 +76,6 @@ function check_docker_version {
 
         return 1
     fi
-
-    # # Attempt to retrieve Docker version
-    # if ! (docker --version > /dev/null); then
-    #     echo "Failed to retrieve Docker version. Docker may not be running."
-    #     return 1
-    # fi
-
-    # current_version=$(docker --version | awk '{print $3}')
-
-    # # Validate that a version was retrieved successfully
-    # if [[ -z "${current_version}" ]]; then
-    #     echo "Failed to retrieve Docker version."
-    #     return 1
-    # fi
-
-    # if [[ $# -eq 0 ]]; then
-    #     # No target version specified; only check installation and running state
-    #     echo "Docker is installed with version: ${current_version}"
-    #     return 0
-    # else
-    #     # Compare current version with the provided target version
-    #     target_version=$1
-    #     if [[ "${current_version}" == "${target_version}" ]]; then
-    #         echo "Docker version ${current_version} is installed."
-    #         return 0
-    #     else
-    #         echo "Docker version mismatch. Current: ${current_version}, Target: ${target_version}"
-    #         return 1
-    #     fi
-    # fi
 }
 check_docker_version
 
@@ -169,7 +139,7 @@ software_list=(
     "Portainer - Optional: Docker WebUI"
     "Ollama - Required: LLM backend manager"
     "Open webUI - Front end chat interface"
-    "SearXNG - Open Source Chat"
+    "SearXNG - Open Source Search Proxy"
     "Whispher - Speech-to-Text"
     "kokoro - Text-to-Speech"
     "ComfyUI - Image Generation"

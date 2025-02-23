@@ -8,7 +8,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /mnt/models/stable-diffusion-webui-docker/data:/data
+      - ${SD_DATA:-/mnt/models/stable-diffusion-webui-docker/data}:/data
 
   stable-diffusion-webui:
     build: ./stable-diffusion-webui-docker/services/comfy/
@@ -20,8 +20,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /mnt/models/stable-diffusion-webui-docker/data:/data
-      - /mnt/models/stable-diffusion-webui-docker/output:/output
+      - ${SD_DATA:-/mnt/models/stable-diffusion-webui-docker/data}:/data
+      - ${SD_OUTPUT:-/mnt/models/stable-diffusion-webui-docker/output}:/output
     stop_signal: SIGKILL
     tty: true
     deploy:

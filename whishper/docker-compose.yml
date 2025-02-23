@@ -9,8 +9,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /mnt/models/whisper/db_data:/data/db
-      - /mnt/models/whisper/db_data/logs/:/var/log/mongodb/
+      - ${MONGO_DB:-/mnt/models/whisper/db_data}:/data/db
+      - ${MONGO_LOGS:-/mnt/models/whisper/db_data/logs}:/var/log/mongodb/
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -31,8 +31,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /mnt/models/whisper/libretranslate/data:/home/libretranslate/.local/share
-      - /mnt/models/whisper/libretranslate/cache:/home/libretranslate/.local/cache
+      - ${LIBERT_DATA:-/mnt/models/whisper/libretranslate/data}:/home/libretranslate/.local/share
+      - ${LIBERT_CACHE:-/mnt/models/whisper/libretranslate/cache}:/home/libretranslate/.local/cache
     user: root
     tty: true
     environment:
@@ -62,9 +62,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /mnt/models/whisper/uploads:/app/uploads
-      - /mnt/models/whisper/logs:/var/log/whishper
-      - /mnt/models/whisper/models:/app/models
+      - ${WHISPHER_UPLOADS:-/mnt/models/whisper/uploads}:/app/uploads
+      - ${WHISPHER_LOGS:-/mnt/models/whisper/logs}:/var/log/whishper
+      - ${WHISPHER_MODELS:-/mnt/models/whisper/models}:/app/models
     restart: unless-stopped
     depends_on:
       - mongo
