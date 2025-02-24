@@ -13,6 +13,9 @@ Run
 ```
 Seclect the options you want to install and follow instructions in script.
 
+Featured by Canuck Creator demonstrating the installation and setup process.  
+https://www.youtube.com/watch?v=ynQb5IH-xEI&t=153s  
+
 
 # Manual installation instructions
 ### Prerequisits
