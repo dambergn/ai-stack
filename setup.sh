@@ -80,27 +80,28 @@ function check_docker_version {
 check_docker_version
 
 CURRENT_DIR=$(pwd)
+IP_ADDRESS=$(ip route get 8.8.8.8 | awk '{print $7}')
 
 # Install functions
 install_ollama() {
     echo "Installing Ollama..."
     # Add your specific install commands here
     cd "${CURRENT_DIR}/ollama"
-    sudo docker compose up -d
+    sudo docker compose up --build -d
 }
 
 install_open-webui() {
     echo "Installing Open WebUI..."
     # Add your specific install commands here
     cd "${CURRENT_DIR}/open-webui"
-    sudo docker compose up -d
+    sudo docker compose up --build -d
 }
 
 install_searxng() {
     echo "Installing SearXNG..."
     # Add your specific install commands here
     cd "${CURRENT_DIR}/searxng"
-    sudo docker compose up -d
+    sudo docker compose up --build -d
 }
 
 install_whispher() {
@@ -110,12 +111,12 @@ install_whispher() {
 
     sudo echo "DB_USER=
     DB_PASS=
-    WHISHPER_HOST=https://whisper.local.example.com
+    WHISHPER_HOST=$IP_ADDRESS:8100
     WHISPER_MODELS=tiny,small
     PUID=
     PGID=" > .env
 
-    sudo docker compose up -d
+    sudo docker compose up --build -d
 }
 
 install_kokoro() {
@@ -132,7 +133,7 @@ install_comfyui() {
     cd "${CURRENT_DIR}/comfyui"
     ./pull-repo.sh
     sed -i "s|git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|# git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|g" stable-diffusion-webui-docker/services/comfy/Dockerfile
-    sudo docker compose up -d
+    sudo docker compose up --build -d
 }
 
 # Define software list and their install commands
