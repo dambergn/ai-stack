@@ -85,28 +85,24 @@ IP_ADDRESS=$(ip route get 8.8.8.8 | awk '{print $7}')
 # Install functions
 install_ollama() {
     echo "Installing Ollama..."
-    # Add your specific install commands here
     cd "${CURRENT_DIR}/ollama"
     sudo docker compose up --build -d
 }
 
 install_open-webui() {
     echo "Installing Open WebUI..."
-    # Add your specific install commands here
     cd "${CURRENT_DIR}/open-webui"
     sudo docker compose up --build -d
 }
 
 install_searxng() {
     echo "Installing SearXNG..."
-    # Add your specific install commands here
     cd "${CURRENT_DIR}/searxng"
     sudo docker compose up --build -d
 }
 
 install_whispher() {
     echo "Installing Whispher..."
-    # Add your specific install commands here
     cd "${CURRENT_DIR}/whishper"
 
     sudo echo "DB_USER=
@@ -121,7 +117,6 @@ install_whispher() {
 
 install_kokoro() {
     echo "Installing Kokoro..."
-    # Add your specific install commands here
     cd "${CURRENT_DIR}/fastkoko"
     sudo docker compose down
     sudo docker compose up --build -d
@@ -129,10 +124,38 @@ install_kokoro() {
 
 install_comfyui() {
     echo "Installing ComfyUI..."
-    # Add your specific install commands here
     cd "${CURRENT_DIR}/comfyui"
     ./pull-repo.sh
     sed -i "s|git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|# git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|g" stable-diffusion-webui-docker/services/comfy/Dockerfile
+    sudo docker compose up --build -d
+}
+
+install_immich(){
+    echo "Installing Immich..."
+    cd "${CURRENT_DIR}/immich"
+
+    sudo echo "# You can find documentation for all the supported env variables at https://immich.app/docs/install/environment-variables
+
+# The location where your uploaded files are stored
+UPLOAD_LOCATION=/mnt/models/immich
+# The location where your database files are stored
+DB_DATA_LOCATION=/mnt/models/postgres
+
+# To set a timezone, uncomment the next line and change Etc/UTC to a TZ identifier from this list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
+# TZ=Etc/UTC
+
+# The Immich version to use. You can pin this to a specific version like "v1.71.0"
+IMMICH_VERSION=release
+
+# Connection secret for postgres. You should change it to a random password
+# Please use only the characters \`A-Za-z0-9\`, without special characters or spaces
+DB_PASSWORD=postgres
+
+# The values below this line do not need to be changed
+###################################################################################
+DB_USERNAME=postgres
+DB_DATABASE_NAME=immich" > .env
+    sudo docker compose down
     sudo docker compose up --build -d
 }
 
@@ -145,6 +168,7 @@ software_list=(
     "Whispher - Speech-to-Text"
     "kokoro - Text-to-Speech"
     "ComfyUI - Image Generation"
+    "Immich - Digital Image Manager"
 )
 install_commands=(
     "sudo docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.21.5"
@@ -154,6 +178,7 @@ install_commands=(
     "install_whispher"
     "install_kokoro"
     "install_comfyui"
+    "install_immich"
 )
 selected=()
 for ((i=0; i<${#software_list[@]}; i++)); do
@@ -261,3 +286,4 @@ echo "SearXNG: http://localhost:8081"
 echo "Whispher: http://localhost:8100"
 echo "kokoro: http://localhost:8880/web"
 echo "ComfyUI: http://localhost:7860"
+echo "Immich: http://localhost:2283"
