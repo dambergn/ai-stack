@@ -1,2 +1,2 @@
 .env
-./comfyui/stable-diffusion-webui-docker
+comfyui/stable-diffusion-webui-docker

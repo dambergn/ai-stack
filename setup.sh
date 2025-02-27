@@ -104,14 +104,7 @@ install_searxng() {
 install_whispher() {
     echo "Installing Whispher..."
     cd "${CURRENT_DIR}/whishper"
-
-    sudo echo "DB_USER=
-    DB_PASS=
-    WHISHPER_HOST=$IP_ADDRESS:8100
-    WHISPER_MODELS=tiny,small
-    PUID=
-    PGID=" > .env
-
+    ./setup_whishper.sh
     sudo docker compose up --build -d
 }
 
@@ -126,35 +119,22 @@ install_comfyui() {
     echo "Installing ComfyUI..."
     cd "${CURRENT_DIR}/comfyui"
     ./pull-repo.sh
-    sed -i "s|git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|# git reset --hard 276f8fce9f5a80b500947fb5745a4dde9e84622d && /|g" stable-diffusion-webui-docker/services/comfy/Dockerfile
+    ./setup_comfyui.sh
     sudo docker compose up --build -d
 }
 
 install_immich(){
     echo "Installing Immich..."
     cd "${CURRENT_DIR}/immich"
+    ./setup_immich.sh
+    sudo docker compose down
+    sudo docker compose up --build -d
+}
 
-    sudo echo "# You can find documentation for all the supported env variables at https://immich.app/docs/install/environment-variables
-
-# The location where your uploaded files are stored
-UPLOAD_LOCATION=/mnt/models/immich
-# The location where your database files are stored
-DB_DATA_LOCATION=/mnt/models/postgres
-
-# To set a timezone, uncomment the next line and change Etc/UTC to a TZ identifier from this list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
-# TZ=Etc/UTC
-
-# The Immich version to use. You can pin this to a specific version like "v1.71.0"
-IMMICH_VERSION=release
-
-# Connection secret for postgres. You should change it to a random password
-# Please use only the characters \`A-Za-z0-9\`, without special characters or spaces
-DB_PASSWORD=postgres
-
-# The values below this line do not need to be changed
-###################################################################################
-DB_USERNAME=postgres
-DB_DATABASE_NAME=immich" > .env
+install_netdata(){
+    echo "Installing Netdata..."
+    cd "${CURRENT_DIR}/netdata"
+    ./setup_netdata.sh
     sudo docker compose down
     sudo docker compose up --build -d
 }
@@ -169,6 +149,7 @@ software_list=(
     "kokoro - Text-to-Speech"
     "ComfyUI - Image Generation"
     "Immich - Digital Image Manager"
+    "Netdata - Web Based System Monitor"
 )
 install_commands=(
     "sudo docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.21.5"
@@ -179,6 +160,7 @@ install_commands=(
     "install_kokoro"
     "install_comfyui"
     "install_immich"
+    "install_netdata"
 )
 selected=()
 for ((i=0; i<${#software_list[@]}; i++)); do

@@ -147,6 +147,23 @@ DB_DATABASE_NAME=immich
 docker compose up
 ```
 
+## Netdata - Web based system monitor
+- https://www.netdata.cloud/
+When you first go to the URL for the netdata installation, it will ask you to log in.  
+There is a Skip and use locally that is green and blends into the background at the bottom right.  
+```bash
+cd ~/ai-stack/netdata
+sudo nano /opt/Caddyfile
+netdata.example.org {
+  reverse_proxy host.docker.internal:19999
+  tls admin@example.org
+}
+
+# Crtl x y
+
+docker compose up
+```
+
 ## Logo
 ```
 
