@@ -125,6 +125,28 @@ docker compose up
 ```
 URL: http://localhost:7860
 
+## Immich digital image manager
+- https://immich.app/
+- https://github.com/immich-app/immich
+Self-hosted photo and  
+video management solution  
+Easily back up, organize, and manage your photos on your own server. Immich helps you  
+browse, search and organize your photos and videos with ease, without sacrificing your privacy.  
+```bash
+cd ~/ai-stack/immich
+nano .env
+UPLOAD_LOCATION=/mnt/models/immich
+DB_DATA_LOCATION=/mnt/models/postgres
+IMMICH_VERSION=release
+DB_PASSWORD=postgres
+DB_USERNAME=postgres
+DB_DATABASE_NAME=immich
+
+# Ctrl x y
+
+docker compose up
+```
+
 ## Logo
 ```
 
