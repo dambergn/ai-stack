@@ -134,7 +134,7 @@ install_immich(){
     echo "Installing Immich..."
     cd "${CURRENT_DIR}/immich"
 
-    echo "# You can find documentation for all the supported env variables at https://immich.app/docs/install/environment-variables
+    sudo echo "# You can find documentation for all the supported env variables at https://immich.app/docs/install/environment-variables
 
 # The location where your uploaded files are stored
 UPLOAD_LOCATION=/mnt/models/immich
@@ -154,7 +154,7 @@ DB_PASSWORD=postgres
 # The values below this line do not need to be changed
 ###################################################################################
 DB_USERNAME=postgres
-DB_DATABASE_NAME=immich"
+DB_DATABASE_NAME=immich" > .env
     sudo docker compose down
     sudo docker compose up --build -d
 }
