@@ -1,9 +1,11 @@
-# ai-stack-v2
+# ai-stack
 
 New version of my AI stack separating out each component instead of having them all be apart of the same docker compose.
 After running setup.sh you can CD into each folder component and run docker compose up -d, or run start.sh to run them all.  
 This is based of Techno Tim but I have made significant changes to his implimentation.  https://www.youtube.com/watch?v=yoze1IxdBdM&t=3301s  
 
+## Community
+[Discord](https://discord.gg/ecwxW6J)
 
 ## Easy/Automated Install method
 Ensure nvidia drivers are installed and working.
