@@ -6,3 +6,7 @@ services:
       - "3000:3000" # Maps host port 3000 → container port 3000
     environment:
       - NODE_ENV=production
+
+networks:
+  dockernet:
+    external: true

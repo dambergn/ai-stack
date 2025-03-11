@@ -11,3 +11,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./certs:/etc/ssl/certs
     restart: unless-stopped
+
+networks:
+  dockernet:
+    external: true

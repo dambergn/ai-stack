@@ -48,3 +48,7 @@ volumes:
   netdataconfig:
   netdatalib:
   netdatacache:
+
+networks:
+  dockernet:
+    external: true
