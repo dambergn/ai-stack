@@ -97,7 +97,7 @@ install_stackui() {
 install_ollama() {
     echo "Installing Ollama..."
     cd "${CURRENT_DIR}/ollama"
-    sudo docker compose up --build -d
+    sudo docker compose up --build --force-recreate -d
 }
 
 install_open-webui() {
