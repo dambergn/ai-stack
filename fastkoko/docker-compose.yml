@@ -7,6 +7,7 @@ services:
       - dockernet
     ports:
       - '8880:8880'
+    restart: unless-stopped
     deploy:
       resources:
         reservations:
