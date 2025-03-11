@@ -4,6 +4,7 @@ services:
   nginx:
     image: nginx:stable
     container_name: web_server
+    network_mode: "host"
     ports:
       - "80:80"
       - "443:443"
