@@ -155,7 +155,7 @@ software_list=(
     "Portainer - Optional: Docker WebUI"
     "Ollama - Required: LLM backend manager"
     "Open webUI - Front end chat interface"
-    "StackUI" - WebUI for managing AI-Stack
+    "StackUI - WebUI for managing AI-Stack"
     "SearXNG - Open Source Search Proxy"
     "Whispher - Speech-to-Text"
     "kokoro - Text-to-Speech"
