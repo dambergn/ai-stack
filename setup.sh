@@ -83,6 +83,17 @@ CURRENT_DIR=$(pwd)
 IP_ADDRESS=$(ip route get 8.8.8.8 | awk '{print $7}')
 
 # Install functions
+install_portainer(){
+    echo "Installing Portainer..."
+    sudo docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.27.1
+}
+
+install_stackui() {
+    echo "Installing stackui..."
+    cd "${CURRENT_DIR}/stackui"
+    sudo docker compose up --build -d
+}
+
 install_ollama() {
     echo "Installing Ollama..."
     cd "${CURRENT_DIR}/ollama"
@@ -144,6 +155,7 @@ software_list=(
     "Portainer - Optional: Docker WebUI"
     "Ollama - Required: LLM backend manager"
     "Open webUI - Front end chat interface"
+    "StackUI" - WebUI for managing AI-Stack
     "SearXNG - Open Source Search Proxy"
     "Whispher - Speech-to-Text"
     "kokoro - Text-to-Speech"
@@ -152,9 +164,10 @@ software_list=(
     "Netdata - Web Based System Monitor"
 )
 install_commands=(
-    "sudo docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.27.1"
+    "install_portainer"
     "install_ollama"
     "install_open-webui"
+    "install_stackui"
     "install_searxng"
     "install_whispher"
     "install_kokoro"
