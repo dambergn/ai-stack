@@ -1,3 +1,4 @@
+# Netdata
 version: '3'
 services:
   caddy:
@@ -48,3 +49,7 @@ volumes:
   netdataconfig:
   netdatalib:
   netdatacache:
+
+networks:
+  dockernet:
+    external: true

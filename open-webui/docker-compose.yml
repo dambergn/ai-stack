@@ -1,3 +1,4 @@
+# Open Web UI
 services:
   open-webui:
     image: ghcr.io/open-webui/open-webui:v0.5.20

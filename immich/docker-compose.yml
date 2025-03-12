@@ -1,5 +1,5 @@
+# Immich
 name: immich
-
 services:
   immich-server:
     container_name: immich_server
@@ -74,7 +74,11 @@ services:
       -c max_wal_size=2GB
       -c shared_buffers=512MB
       -c wal_compression=on
-    restart: always
+    restart: unless-stopped
 
 volumes:
   model-cache:
+
+networks:
+  dockernet:
+    external: true
