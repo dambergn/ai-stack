@@ -1,5 +1,5 @@
+# Immich
 name: immich
-
 services:
   immich-server:
     container_name: immich_server

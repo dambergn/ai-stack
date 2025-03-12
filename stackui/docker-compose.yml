@@ -1,3 +1,4 @@
+# StackUI
 version: '3'
 services:
     webapp:

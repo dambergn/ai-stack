@@ -1,3 +1,4 @@
+# SearXNG
 services:
   searxng:
     image: searxng/searxng:latest

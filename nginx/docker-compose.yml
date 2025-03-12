@@ -1,5 +1,5 @@
+# Nginx
 version: '3.8'
-
 services:
   nginx:
     image: nginx:stable
