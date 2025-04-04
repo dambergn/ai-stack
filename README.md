@@ -1,9 +1,11 @@
-# ai-stack-v2
+# ai-stack
 
 New version of my AI stack separating out each component instead of having them all be apart of the same docker compose.
 After running setup.sh you can CD into each folder component and run docker compose up -d, or run start.sh to run them all.  
 This is based of Techno Tim but I have made significant changes to his implimentation.  https://www.youtube.com/watch?v=yoze1IxdBdM&t=3301s  
 
+## Community
+[Discord](https://discord.gg/ecwxW6J)
 
 ## Easy/Automated Install method
 Ensure nvidia drivers are installed and working.
@@ -13,7 +15,7 @@ Run
 ```
 Seclect the options you want to install and follow instructions in script.
 
-Featured by Canuck Creator demonstrating the installation and setup process.  
+### Featured by Canuck Creator demonstrating the installation and setup process.  
 https://www.youtube.com/watch?v=ynQb5IH-xEI&t=153s  
 
 
@@ -124,6 +126,45 @@ nano stable-diffusion-webui-docker/services/comfy/Dockerfile
 docker compose up
 ```
 URL: http://localhost:7860
+
+## Immich digital image manager
+- https://immich.app/
+- https://github.com/immich-app/immich
+Self-hosted photo and  
+video management solution  
+Easily back up, organize, and manage your photos on your own server. Immich helps you  
+browse, search and organize your photos and videos with ease, without sacrificing your privacy.  
+```bash
+cd ~/ai-stack/immich
+nano .env
+UPLOAD_LOCATION=/mnt/models/immich
+DB_DATA_LOCATION=/mnt/models/postgres
+IMMICH_VERSION=release
+DB_PASSWORD=postgres
+DB_USERNAME=postgres
+DB_DATABASE_NAME=immich
+
+# Ctrl x y
+
+docker compose up
+```
+
+## Netdata - Web based system monitor
+- https://www.netdata.cloud/
+When you first go to the URL for the netdata installation, it will ask you to log in.  
+There is a Skip and use locally that is green and blends into the background at the bottom right.  
+```bash
+cd ~/ai-stack/netdata
+sudo nano /opt/Caddyfile
+netdata.example.org {
+  reverse_proxy host.docker.internal:19999
+  tls admin@example.org
+}
+
+# Crtl x y
+
+docker compose up
+```
 
 ## Logo
 ```

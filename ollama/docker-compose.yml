@@ -1,12 +1,14 @@
+# Ollama
 services:
   ollama:
-    image: ollama/ollama:latest
+    image: ollama/ollama:0.6.0
     container_name: ollama
     restart: unless-stopped
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - OLLAMA_KEEP_ALIVE=1h
+      - OLLAMA_CONTEXT_LENGTH=8192
       - ENABLE_IMAGE_GENERATION=True
       - COMFYUI_BASE_URL=http://stable-diffusion-webui:7860
     networks:

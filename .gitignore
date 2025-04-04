@@ -1,3 +1,5 @@
 .env
 ./comfyui/stable-diffusion-webui-docker
 ./stackui/node_modules
+comfyui/stable-diffusion-webui-docker
+nginx/certs

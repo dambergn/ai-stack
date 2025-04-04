@@ -1,3 +1,4 @@
+# Comfy UI
 services:
   stable-diffusion-download:
     build: ./stable-diffusion-webui-docker/services/download/
@@ -36,6 +37,7 @@ services:
       - dockernet
     ports:
       - "7860:7860" # Add this line to expose the port
+      
 networks:
   dockernet:
     external: true
