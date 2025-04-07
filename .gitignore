@@ -3,3 +3,4 @@
 ./stackui/node_modules
 comfyui/stable-diffusion-webui-docker
 nginx/certs
+node_modules
