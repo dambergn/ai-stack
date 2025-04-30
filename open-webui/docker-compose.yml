@@ -18,7 +18,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ${DATA:-/mnt/models/fastkoko}:/app/backend/data
+      - ${DATA:-/mnt/models/openwebui}:/app/backend/data
     ports:
       - "8080:8080" # Add this line to expose the port
     extra_hosts:
