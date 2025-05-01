@@ -112,6 +112,13 @@ install_searxng() {
     sudo docker compose up --build -d
 }
 
+install_n8n() {
+    echo "Installing n8n..."
+    cd "${CURRENT_DIR}/n8n"
+    cp .env.example .env
+    sudo docker compose up --build -d
+}
+
 install_whispher() {
     echo "Installing Whispher..."
     cd "${CURRENT_DIR}/whishper"
@@ -165,6 +172,7 @@ software_list=(
     "Open webUI - Front end chat interface"
     "StackUI - WebUI for managing AI-Stack"
     "SearXNG - Open Source Search Proxy"
+    "n8n - Codeless Agents"
     "Whispher - Speech-to-Text"
     "kokoro - Text-to-Speech"
     "ComfyUI - Image Generation"
@@ -178,6 +186,7 @@ install_commands=(
     "install_open-webui"
     "install_stackui"
     "install_searxng"
+    "install_n8n"
     "install_whispher"
     "install_kokoro"
     "install_comfyui"
@@ -289,6 +298,7 @@ echo "Portainer: https://localhost:9443"
 echo "StackUI:   http://localhost:3000"
 echo "OpenWebUI: http://localhost:8080"
 echo "SearXNG:   http://localhost:8081"
+echo "n8n:       http://localhost:5678"
 echo "Whispher:  http://localhost:8100"
 echo "kokoro:    http://localhost:8880/web"
 echo "ComfyUI:   http://localhost:7860"
