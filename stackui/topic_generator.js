@@ -26,6 +26,9 @@ async function ollama_request(model, prompt) {
 
 async function main(){
     let model = "qwen3:0.6b"
+    let prompt = "Please generate a list of all the elements on the periodic table and return them in json format."
+    let ollama_response = await ollama_request(model, prompt);
+    console.log(ollama_response);
     
 };
 
