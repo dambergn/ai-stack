@@ -19,10 +19,22 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ${DATA:-/mnt/models/openwebui}:/app/backend/data
+    depends_on:
+      - litellm-proxy
     ports:
       - "8080:8080" # Add this line to expose the port
     extra_hosts:
       - host.docker.internal:host-gateway
+
+  litellm-proxy:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: litellm-proxy
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY} # Reads the key from a .env file
+    command: ["--model", "gemini/gemini-1.5-pro-latest", "--port", "8000", "--host", "0.0.0.0"]
+    restart: unless-stopped
+    networks:
+      - dockernet
 
 networks:
   dockernet:
