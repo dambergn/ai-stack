@@ -1,7 +1,7 @@
 # StackUI
-version: '3'
 services:
     webapp:
+      container_name: stackui
       build: .
       ports:
         - "3000:3000" # Maps host port 3000 → container port 3000
