@@ -7,8 +7,6 @@ git_pull_current_branch() {
   git pull origin "$current_branch"
 }
 
-
-
 echo "Updating stackui..."
 cd "${CURRENT_DIR}/stackui"
 sudo docker compose down
