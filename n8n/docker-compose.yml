@@ -1,31 +1,32 @@
 services:
-  traefik:
-    image: "traefik"
-    restart: always
-    command:
-      - "--api=true"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-      - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.mytlschallenge.acme.tlschallenge=true"
-      - "--certificatesresolvers.mytlschallenge.acme.email=${SSL_EMAIL}"
-      - "--certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json"
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - traefik_data:/letsencrypt
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+  # traefik:
+  #   image: "traefik"
+  #   restart: always
+  #   command:
+  #     - "--api=true"
+  #     - "--api.insecure=true"
+  #     - "--providers.docker=true"
+  #     - "--providers.docker.exposedbydefault=false"
+  #     - "--entrypoints.web.address=:80"
+  #     - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+  #     - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+  #     - "--entrypoints.websecure.address=:443"
+  #     - "--certificatesresolvers.mytlschallenge.acme.tlschallenge=true"
+  #     - "--certificatesresolvers.mytlschallenge.acme.email=${SSL_EMAIL}"
+  #     - "--certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json"
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - traefik_data:/letsencrypt
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
 
   n8n:
     image: docker.n8n.io/n8nio/n8n
     restart: always
+    container_name: n8n
     ports:
-      - "127.0.0.1:5678:5678"
+      - "5678:5678"
     labels:
       - traefik.enable=true
       - traefik.http.routers.n8n.rule=Host(`${SUBDOMAIN}.${DOMAIN_NAME}`)
