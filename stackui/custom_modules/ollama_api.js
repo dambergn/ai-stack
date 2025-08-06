@@ -78,9 +78,27 @@ async function ollama_request(model, prompt) {
   }
 };
 
+async function ollama_list_models(){
+  const config = {
+    method: 'get',
+    url: `http://${OLLAMA_SERVER}/api/tags`,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+
+  try {
+    const response = await axios(config);
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
 async function main(){
-  let model = "qwen3:0.6b"
-  let prompt = "What was the last topic I asked about?"
+  let model = "gpt-oss:20b"
+  let prompt = "How much wood could a wood cuck chuck if a wood chuck could chcuk wood?"
   let response = {};
   try {
     const ollamaResponse = await ollama_request(model, prompt);
@@ -89,6 +107,9 @@ async function main(){
     console.error("Error in main:", error);
   }
   console.log(response);
+
+  // let models_available = await ollama_list_models();
+  // console.log(models_available);
 }
 
 main();
