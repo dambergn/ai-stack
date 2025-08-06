@@ -52,11 +52,12 @@ function appendToFile(textToAdd, filePath) {
 }
 
 // Ollama API request
+// https://ollama.readthedocs.io/en/api/#request_27
 async function ollama_request(model, prompt) {
   // Create the configuration object for the request
   const config = {
     method: 'post',
-    url: `${OLLAMA_SERVER}/api/generate`,
+    url: `http://${OLLAMA_SERVER}/api/generate`,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -77,13 +78,9 @@ async function ollama_request(model, prompt) {
   }
 };
 
-function formatResponse(data){
-  
-}
-
 async function main(){
-  let model = "deepseek-r1:1.5b"
-  let prompt = "You are an expert on Computer Science, Give me a comprehensive explenation for computer science and its sub-fields. please give me a list of related topics."
+  let model = "qwen3:0.6b"
+  let prompt = "What was the last topic I asked about?"
   let response = {};
   try {
     const ollamaResponse = await ollama_request(model, prompt);
