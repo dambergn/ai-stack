@@ -1,0 +1,20 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:2.27.1
+    container_name: portainer  # <-- The name must match what's in nginx.conf
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    ports:
+      - "9443:9443"
+      - "9000:9000" # Not strictly needed if only using via Nginx
+    networks: # <-- THIS SECTION IS CRITICAL
+      - dockernet
+
+volumes:
+  portainer_data:
+
+networks: # <-- THIS SECTION IS CRITICAL
+  dockernet:
+    external: true
