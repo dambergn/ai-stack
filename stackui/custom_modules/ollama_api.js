@@ -78,6 +78,7 @@ async function ollama_request(model, prompt) {
   }
 };
 
+// Get list of installed models
 async function ollama_list_models(){
   const config = {
     method: 'get',
