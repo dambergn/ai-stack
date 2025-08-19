@@ -35,6 +35,7 @@ update_services() {
 main(){
     git_pull_current_branch
     update_services
+    docker image prune -a
 }
 
 main
