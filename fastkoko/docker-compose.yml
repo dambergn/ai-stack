@@ -1,7 +1,7 @@
 # Kokoro
 services:
   kokoro:
-    image: ghcr.io/remsky/kokoro-fastapi-gpu:v0.2.4
+    image: ghcr.io/remsky/kokoro-fastapi-gpu:v0.2.0
     networks:
       - dockernet
     ports:
