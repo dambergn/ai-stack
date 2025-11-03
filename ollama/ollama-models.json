@@ -1,0 +1,79 @@
+[
+    {
+        "name": "Llama 4 Scout",
+        "model": "llama4:16x17b",
+        "size": "67GB",
+        "context":"10M",
+        "type": "moe",
+        "parameters": "109B",
+        "active_parameters": "17B",
+        "experts":"16",
+        "ollama_url":"https://ollama.com/library/llama4:16x17b",
+        "huggingface_url":"",
+        "ollama":"llama4:scout",
+        "quantinization":"Q4_K_M",
+        "input": ["text", "image"],
+        "output": ["text", "code"],
+        "tags": ["vision", "tools"],
+        "languages": [
+            "Arabic", 
+            "English", 
+            "French", 
+            "German", 
+            "Hindi", 
+            "Indonesian", 
+            "Italian", 
+            "Portuguese", 
+            "Spanish", 
+            "Tagalog", 
+            "Thai", 
+            "Vietnamese"
+        ],
+        "released":"2025-04-05",
+        "wikipedia":"https://en.wikipedia.org/wiki/Llama_(language_model)",
+        "notes":[
+            "Intended Use Cases: Llama 4 is intended for commercial and research use in multiple languages. Instruction tuned models are intended for assistant-like chat and visual reasoning tasks, whereas pretrained models can be adapted for natural language generation. For vision, Llama 4 models are also optimized for visual recognition, image reasoning, captioning, and answering general questions about an image. The Llama 4 model collection also supports the ability to leverage the outputs of its models to improve other models including synthetic data generation and distillation. The Llama 4 Community License allows for these use cases.",
+            "Out-of-scope: Use in any manner that violates applicable laws or regulations (including trade compliance laws). Use in any other way that is prohibited by the Acceptable Use Policy and Llama 4 Community License. Use in languages or capabilities beyond those explicitly referenced as supported in this model card.",
+            "Llama 4 has been trained on a broader collection of languages than the 12 supported languages (pre-training includes 200 total languages). Developers may fine-tune Llama 4 models for languages beyond the 12 supported languages provided they comply with the Llama 4 Community License and the Acceptable Use Policy. Developers are responsible for ensuring that their use of Llama 4 in additional languages is done in a safe and responsible manner.",
+            "Llama 4 has been tested for image understanding up to 5 input images. If leveraging additional image understanding capabilities beyond this, Developers are responsible for ensuring that their deployments are mitigated for risks and should perform additional testing and tuning tailored to their specific applications."
+        ]
+    },
+    {
+        "name": "Llama 4 Maverick",
+        "model": "llama4:128x17b",
+        "size": "67GB",
+        "context":"1M",
+        "type": "moe",
+        "parameters": "109B",
+        "active_parameters": "17B",
+        "experts":"128",
+        "ollama_url":"https://ollama.com/library/llama4:128x17b",
+        "ollama":"llama4:maverick",
+        "quantinization":"Q4_K_M",
+        "input": ["text", "image"],
+        "output": ["text", "code"],
+        "tags": ["vision", "tools"],
+        "languages": [
+            "Arabic", 
+            "English", 
+            "French", 
+            "German", 
+            "Hindi", 
+            "Indonesian", 
+            "Italian", 
+            "Portuguese", 
+            "Spanish", 
+            "Tagalog", 
+            "Thai", 
+            "Vietnamese"
+        ],
+        "released":"2025-04-05",
+        "wikipedia":"https://en.wikipedia.org/wiki/Llama_(language_model)",
+        "notes":[
+            "Intended Use Cases: Llama 4 is intended for commercial and research use in multiple languages. Instruction tuned models are intended for assistant-like chat and visual reasoning tasks, whereas pretrained models can be adapted for natural language generation. For vision, Llama 4 models are also optimized for visual recognition, image reasoning, captioning, and answering general questions about an image. The Llama 4 model collection also supports the ability to leverage the outputs of its models to improve other models including synthetic data generation and distillation. The Llama 4 Community License allows for these use cases.",
+            "Out-of-scope: Use in any manner that violates applicable laws or regulations (including trade compliance laws). Use in any other way that is prohibited by the Acceptable Use Policy and Llama 4 Community License. Use in languages or capabilities beyond those explicitly referenced as supported in this model card.",
+            "Llama 4 has been trained on a broader collection of languages than the 12 supported languages (pre-training includes 200 total languages). Developers may fine-tune Llama 4 models for languages beyond the 12 supported languages provided they comply with the Llama 4 Community License and the Acceptable Use Policy. Developers are responsible for ensuring that their use of Llama 4 in additional languages is done in a safe and responsible manner.",
+            "Llama 4 has been tested for image understanding up to 5 input images. If leveraging additional image understanding capabilities beyond this, Developers are responsible for ensuring that their deployments are mitigated for risks and should perform additional testing and tuning tailored to their specific applications."
+        ]
+    }
+]
